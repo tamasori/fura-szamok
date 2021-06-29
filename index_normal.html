@@ -116,12 +116,8 @@
             for (let x = 2; x < 2.000006; x += 0.0000001) {
                 brd.create('line',[[x,0.1],[x,-0.1]], {straightFirst:false, straightLast:false, strokeWidth:1, color:"#000"});
             }
-        
-
-        
-
             dataset.forEach(szam => {
-                brd.create('glider', [szam, 0, axisx], {name: Number(String(szam).replace("2","0")).toExponential() + " +2", color: colors[selector]});
+                brd.create('glider', [szam, 0, axisx], {name: Number(String(szam).replace("2","0")).toExponential() + " + 2", color: colors[selector]});
             });
         }
     </script>
