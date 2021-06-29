@@ -118,8 +118,10 @@
             }
         
 
+        
+
             dataset.forEach(szam => {
-                brd.create('glider', [szam, 0, axisx], {name: szam, color: colors[selector]});
+                brd.create('glider', [szam, 0, axisx], {name: Number(String(szam).replace("2","0")).toExponential() + " +2", color: colors[selector]});
             });
         }
     </script>
