@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fura számok</title>
+    <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+    <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+    <style>
+        .jxgbox{
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fura számok</h1>
+    <hr>
+    <h2>Zöld</h2>
+    <div id="zold" class="jxgbox" style="width:100%; height:200px;"></div>
+    <h2>Narancs</h2>
+    <div id="narancs" class="jxgbox" style="width:100%; height:200px;"></div>
+    <h2>Vörös</h2>
+    <div id="voros" class="jxgbox" style="width:100%; height:200px;"></div>
+    <script>
+
+        const zold = [
+            2.0000001,
+            2.0000003,
+            2.0000005,
+            2.0000007,
+            2.0000009,
+            2.0000011,
+            2.0000013,
+            2.0000015,
+            2.0000017,
+            2.0000019,
+            2.0000021,
+            2.0000023,
+            2.0000025,
+            2.0000027,
+            2.0000029,
+            2.0000031,
+            2.0000033,
+            2.0000035,
+            2.0000037
+        ];
+
+        const narancs = [
+            2.0000000000,
+            2.0000002384,
+            2.0000004768,
+            2.0000007153,
+            2.0000009537,
+            2.0000011921,
+            2.0000014305,
+            2.0000016689,
+            2.0000019073,
+            2.0000021458,
+            2.0000023842,
+            2.0000026226,
+            2.0000028610,
+            2.0000030994,
+            2.0000033379,
+            2.0000035763,
+            2.0000038147,
+            2.0000040531,
+            2.0000042915,
+            2.0000045300
+        ];
+
+        const voros = [
+            2.0000000000,
+            2.0000002384,
+            2.0000004768,
+            2.0000007153,
+            2.0000007153,
+            2.0000009537,
+            2.0000011921,
+            2.0000014305,
+            2.0000016689,
+            2.0000019073,
+            2.0000019073,
+            2.0000021458,
+            2.0000023842,
+            2.0000026226,
+            2.0000028610,
+            2.0000030994,
+            2.0000030994,
+            2.0000033379,
+            2.0000035763,
+            2.0000038147
+        ];
+        const colors = {
+            "zold": "#42f545",
+            "narancs": "#f5ad42",
+            "voros": "#f54242",
+        };
+        drawBoard("zold", zold);
+        drawBoard("narancs", narancs);
+        drawBoard("voros", voros);
+
+        
+
+        function drawBoard(selector, dataset){
+            var brd = JXG.JSXGraph.initBoard(selector, {boundingbox:[1.99999999,2,2.0000048,-2]});
+            var axisx = brd.create('axis', [[0,0], [1,0]], 
+            {
+                firstArrow: true,
+                lastArrow: true,
+                ticks: {
+                    drawZero: true,
+                }
+            });
+            //nem tud ilyen pici egységet vonalkázni, szóval kicsit meg kell viccelni
+            for (let x = 2; x < 2.000006; x += 0.0000001) {
+                brd.create('line',[[x,0.1],[x,-0.1]], {straightFirst:false, straightLast:false, strokeWidth:1, color:"#000"});
+            }
+        
+
+            dataset.forEach(szam => {
+                brd.create('glider', [szam, 0, axisx], {name: szam, color: colors[selector]});
+            });
+        }
+    </script>
+</body>
+</html>
